@@ -73,7 +73,7 @@ app.use("/api/v1/users", userRouter);
 
 
 app.get('/api/v1', (req, res) => {
-    res.send("<h3>Using docker hub to push changes!</h3>");
+    res.send("<h3>Using docker swarm services!!!</h3>");
     console.log("Yeah it ran");
 });
 
