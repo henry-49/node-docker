@@ -4,6 +4,13 @@ services:
         ports: 
             - "80:80"  # mapping port: 80 to port: 80 for production
     node-app:
+        deploy:             # setup for docker swarm
+            replicas: 8
+            restart_policy:
+                condition: any
+            update_config:
+                parallelism: 2
+                delay: 15s
         build: 
             context: .
             args: 
