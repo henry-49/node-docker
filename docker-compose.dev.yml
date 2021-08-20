@@ -1,0 +1,28 @@
+version: "3"
+services: 
+    nginx:
+        ports: 
+            - "3000:80"  # mapping port: 3000 to port: 80
+    node-app:
+        build: 
+            context: .
+            args: 
+                NODE_ENV: development
+        volumes: 
+            - ./:/app # bind mount volume in container
+            - ./app/node_modules # anonymous volume in local
+        environment: 
+            - NODE_ENV=development
+            - MONGO_USER=mytestdb
+            - MONGO_PASSWORD=mypassword
+            - SESSION_SECRET=secret
+
+        command: npm run dev
+    mongo:
+        environment: 
+            - MONGO_INITDB_ROOT_USERNAME=mytestdb
+            - MONGO_INITDB_ROOT_PASSWORD=mypassword
+
+              
+        volumes: 
+            - mongo-db:/data/db # name volume

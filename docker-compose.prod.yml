@@ -1,0 +1,13 @@
+version: "3"
+services: 
+    nginx:
+        ports: 
+            - "80:80"  # mapping port: 80 to port: 80 for production
+    node-app:
+        build: 
+            context: .
+            args: 
+                NODE_ENV: production
+        environment: 
+            - NODE_ENV=production
+        command: node index.js
